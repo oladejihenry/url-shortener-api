@@ -6,7 +6,7 @@
   "author": "Henry Oladeji",
   "scripts": {
     "dev": "nodemon --exec ts-node app/server.ts",
-    "start": "node dist/app/server.js",
+    "start": "node dist/server.js",
     "build": "rm -rf dist && tsc",
     "postinstall": "prisma generate",
     "prisma:migrate": "prisma migrate deploy",

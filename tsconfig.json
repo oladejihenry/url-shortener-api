@@ -1,13 +1,18 @@
 {
   "compilerOptions": {
+    "target": "es2022",
+    "module": "commonjs",
     "sourceMap": true,
-    "outDir": "dist",
-    "rootDir": "./",
+    "outDir": "./dist",
+    "rootDir": "./app",
     "strict": true,
     "lib": ["esnext"],
     "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./app/*"]
     }
   },
   "include": ["app/**/*"],
