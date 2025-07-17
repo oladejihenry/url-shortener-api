@@ -26,7 +26,6 @@ RUN npx prisma generate
 # Copy the rest of the application
 COPY . .
 
-RUN pnpm build
 
 # Expose port
 EXPOSE 3000
