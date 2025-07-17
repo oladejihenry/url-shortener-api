@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id           Int        @id @default(autoincrement())
+  username     String     @unique
+  email        String     @unique
+  password     String
+  refreshToken String?
+  tokenVersion Int        @default(0)
+  lastLogin    DateTime?  @default(now())
+  sessions     Sessions[]
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  urls         Url[]
+}
+
+model Sessions {
+  id           String   @id @default(uuid())
+  userId       Int?
+  user         Users?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  ipAddress    String?  @db.VarChar(45)
+  userAgent    String?  @db.Text
+  payload      String?  @db.Text
+  lastActivity Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@index([userId])
+  @@index([lastActivity])
+}
+
+model Url {
+  id         Int       @id @default(autoincrement())
+  shortCode  String    @unique
+  longUrl    String
+  user       Users     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     Int
+  views      Int       @default(0)
+  lastViewed DateTime?
+  expiresAt  DateTime?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([shortCode])
+  @@index([userId])
+}
