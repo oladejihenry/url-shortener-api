@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "nodemon --exec ts-node app/server.ts",
     "build": "npm install",
+    "postinstall": "npx prisma generate && npx prisma migrate deploy",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md}\""
   },
