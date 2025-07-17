@@ -29,5 +29,9 @@ COPY . .
 # Expose port
 EXPOSE 3000
 
+
+COPY start.sh .
+RUN chmod +x start.sh
+
 # Start the application
-CMD ["sh", "-c", "pnpm dev"]
+CMD ["./start.sh"]

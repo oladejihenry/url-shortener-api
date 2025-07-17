@@ -2,11 +2,14 @@
   "compilerOptions": {
     "sourceMap": true,
     "outDir": "dist",
+    "rootDir": "./",
     "strict": true,
     "lib": ["esnext"],
     "esModuleInterop": true,
     "paths": {
       "@/*": ["./*"]
     }
-  }
+  },
+  "include": ["app/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
