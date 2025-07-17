@@ -5,4 +5,4 @@
 pnpm prisma:migrate
 
 # Start the application
-exec pnpm start
+exec pnpm dev
